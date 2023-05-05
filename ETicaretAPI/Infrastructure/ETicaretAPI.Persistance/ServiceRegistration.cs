@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.Extensions.Configuration;
 
 namespace ETicaretAPI.Persistance
 {
@@ -18,7 +20,12 @@ namespace ETicaretAPI.Persistance
         {
             services.AddSingleton<IProductService, ProductService>();
 
-            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer("Server=.\\sqlexpress;Database=ECommerceDb;Trusted_Connection=True;TrustServerCertificate=True;"));
+            ConfigurationManager configurationManager = new ConfigurationManager();
+            configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
+            configurationManager.AddJsonFile("appsettings.json");
+
+
+            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer(configurationManager.GetConnectionString("DefaultConnection")));
 
         }
     }
