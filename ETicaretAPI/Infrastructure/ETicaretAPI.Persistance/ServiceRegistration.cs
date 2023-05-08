@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ETicaretAPI.Application.Abstractions;
-using ETicaretAPI.Persistance.Concretes;
 using ETicaretAPI.Persistance.Contexts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,8 +16,7 @@ namespace ETicaretAPI.Persistance
     {
         public static void AddPersistanceServices(this IServiceCollection services)
         {
-            services.AddSingleton<IProductService, ProductService>();
-
+           
             ConfigurationManager configurationManager = new ConfigurationManager();
             configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
             configurationManager.AddJsonFile("appsettings.json");
