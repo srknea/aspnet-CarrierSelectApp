@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Extensions.Configuration;
+using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Persistance.Repositories;
 
 namespace ETicaretAPI.Persistance
 {
@@ -24,6 +26,13 @@ namespace ETicaretAPI.Persistance
 
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer(configurationManager.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+            services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+            services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+            services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+            
         }
     }
 }
