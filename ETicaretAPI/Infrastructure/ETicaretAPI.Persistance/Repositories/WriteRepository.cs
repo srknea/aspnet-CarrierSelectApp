@@ -45,12 +45,13 @@ namespace ETicaretAPI.Persistance.Repositories
             Table.RemoveRange(datas);
             return true;
         }
+        
         public async Task<bool> RemoveAsync(string id)
         {
-            T model = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+            T model = await Table.FirstOrDefaultAsync(data => data.Id == int.Parse(id));
             return Remove(model);
         }
-
+        
         public bool Update(T model)
         {
             EntityEntry entityEntry = Table.Update(model);

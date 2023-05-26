@@ -2,17 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ETicaretAPI.Domain.Entities
 {
-    public class Order : BaseEntity
-    {  
-        public int OrderDesi { get; set; }
-        public DateTime OrderDate { get; set; }
-        public decimal OrderCarrierCost { get; set; }
+    public class CarrierConfiguration : BaseEntity
+    {
+        public int CarrierMaxDesi { get; set; }
+        public int CarrierMinDesi { get; set; }
+        public decimal CarrierCost { get; set; }
 
         public Carrier Carrier { get; set; }
     }

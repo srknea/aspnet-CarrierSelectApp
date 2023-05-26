@@ -9,6 +9,7 @@ namespace ETicaretAPI.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        /*
         readonly private IProductReadRepository _productReadRepository;
         readonly private IProductWriteRepository _productWriteRepository;
 
@@ -17,7 +18,9 @@ namespace ETicaretAPI.API.Controllers
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
         }
+        */
 
+        /*
         [HttpGet]
         public async Task Get()
         {
@@ -37,6 +40,7 @@ namespace ETicaretAPI.API.Controllers
             var product = await _productReadRepository.GetByIdAsync(id);
             return Ok(product);
         }
+        */
 
     }
 }

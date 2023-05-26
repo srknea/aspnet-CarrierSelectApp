@@ -15,9 +15,9 @@ namespace ETicaretAPI.Persistance.Contexts
 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Carrier> Carriers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CarrierConfiguration> CarrierConfigurations { get; set; }
 
     }
 }
