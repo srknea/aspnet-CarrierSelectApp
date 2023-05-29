@@ -26,12 +26,12 @@ namespace ETicaretAPI.Persistance
 
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer(configurationManager.GetConnectionString("DefaultConnection")));
 
-            //services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
-            //services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+            services.AddScoped<ICarrierReadRepository, CarrierReadRepository>();
+            services.AddScoped<ICarrierWriteRepository, CarrierWriteRepository>();
             services.AddScoped<IOrderReadRepository, OrderReadRepository>();
             services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
-            //services.AddScoped<IProductReadRepository, ProductReadRepository>();
-            //services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+            services.AddScoped<ICarrierConfigurationReadRepository, CarrierConfigurationReadRepository>();
+            services.AddScoped<ICarrierConfigurationWriteRepository, CarrierConfigurationWriteRepository>();
             
         }
     }
