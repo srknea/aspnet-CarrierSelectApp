@@ -1,4 +1,4 @@
-﻿using ETicaretAPI.Application.Features.Commands.CreateCarrier;
+﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -46,7 +46,6 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> Post(CreateCarrierCommandRequest createCarrierCommandRequest)
         {
             CreateCarrierCommandResponse response = await _mediator.Send(createCarrierCommandRequest);
-            //return Ok(response);
             return StatusCode((int)HttpStatusCode.Created);
         }
 
