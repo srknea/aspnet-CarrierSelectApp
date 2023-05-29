@@ -1,6 +1,9 @@
-﻿using ETicaretAPI.Application.Repositories;
+﻿using ETicaretAPI.Application.Features.Commands.CreateCarrier;
+using ETicaretAPI.Application.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace ETicaretAPI.API.Controllers
 {
@@ -10,10 +13,12 @@ namespace ETicaretAPI.API.Controllers
     {
         readonly private ICarrierReadRepository _carrierReadRepository;
         readonly private ICarrierWriteRepository _carrierWriteRepository;
-        public CarrierController(ICarrierReadRepository carrierReadRepository, ICarrierWriteRepository carrierWriteRepository)
+        readonly private IMediator _mediator;
+        public CarrierController(ICarrierReadRepository carrierReadRepository, ICarrierWriteRepository carrierWriteRepository, IMediator mediator)
         {
             _carrierReadRepository = carrierReadRepository;
             _carrierWriteRepository = carrierWriteRepository;
+            _mediator = mediator;
         }
 
 
@@ -36,6 +41,15 @@ namespace ETicaretAPI.API.Controllers
             var product = await _carrierReadRepository.GetByIdAsync(id);
             return Ok(product);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(CreateCarrierCommandRequest createCarrierCommandRequest)
+        {
+            CreateCarrierCommandResponse response = await _mediator.Send(createCarrierCommandRequest);
+            //return Ok(response);
+            return StatusCode((int)HttpStatusCode.Created);
+        }
+
 
     }
 }
