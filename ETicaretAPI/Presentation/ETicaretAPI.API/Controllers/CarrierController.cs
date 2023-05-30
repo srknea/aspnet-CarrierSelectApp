@@ -40,7 +40,9 @@ namespace ETicaretAPI.API.Controllers
 /*
 readonly private ICarrierReadRepository _carrierReadRepository;
 readonly private ICarrierWriteRepository _carrierWriteRepository;
+*/
 
+/*
 [HttpGet]
 public async Task Get()
 {

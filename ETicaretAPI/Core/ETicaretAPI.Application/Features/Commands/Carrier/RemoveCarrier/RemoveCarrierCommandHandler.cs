@@ -11,7 +11,7 @@ namespace ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier
 {
     public class RemoveCarrierCommandHandler : IRequestHandler<RemoveCarrierCommandRequest, RemoveCarrierCommandResponse>
     {   
-        readonly ICarrierWriteRepository _carrierWriteRepository;
+        readonly private ICarrierWriteRepository _carrierWriteRepository;
 
         public RemoveCarrierCommandHandler(ICarrierWriteRepository carrierWriteRepository)
         {

@@ -1,0 +1,15 @@
+﻿using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.RemoveCarrierConfigurations
+{
+    public class RemoveCarrierConfigurationsCommandRequest : IRequest<RemoveCarrierConfigurationsCommandResponse>
+    {
+        public string Id { get; set; }
+    }
+}
