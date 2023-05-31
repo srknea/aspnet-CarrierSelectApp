@@ -1,7 +1,9 @@
 ﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
+using ETicaretAPI.Application.Features.Commands.Carrier.UpdateCarrier;
 using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.CreateCarrierConfigurations;
 using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.RemoveCarrierConfigurations;
+using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.UpdateCarrierConfigurations;
 using ETicaretAPI.Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +33,13 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> Delete([FromRoute] RemoveCarrierConfigurationsCommandRequest removeCarrierConfigurationsCommandRequest)
         {
             RemoveCarrierConfigurationsCommandResponse response = await _mediator.Send(removeCarrierConfigurationsCommandRequest);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(UpdateCarrierConfigurationsCommandRequest updateCarrierConfigurationsCommandRequest)
+        {
+            UpdateCarrierConfigurationsCommandResponse response = await _mediator.Send(updateCarrierConfigurationsCommandRequest);
             return Ok();
         }
     }
