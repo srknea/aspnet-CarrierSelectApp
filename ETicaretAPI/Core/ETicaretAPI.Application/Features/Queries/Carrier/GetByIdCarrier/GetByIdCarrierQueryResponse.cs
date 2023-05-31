@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier
 {
-    public class GetByIdCarrierConfigurationQueryResponse
+    public class GetByIdCarrierQueryResponse
     {
         public string CarrierName { get; set; }
         public bool CarrierIsActive { get; set; }

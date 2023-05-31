@@ -43,9 +43,9 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> Get([FromRoute] GetByIdCarrierConfigurationQueryRequest getByIdCarrierConfigurationQueryRequest)
+        public async Task<IActionResult> Get([FromRoute] GetByIdCarrierQueryRequest getByIdCarrierConfigurationQueryRequest)
         {
-            GetByIdCarrierConfigurationQueryResponse response = await _mediator.Send(getByIdCarrierConfigurationQueryRequest);
+            GetByIdCarrierQueryResponse response = await _mediator.Send(getByIdCarrierConfigurationQueryRequest);
             return Ok(response);
         }
     }

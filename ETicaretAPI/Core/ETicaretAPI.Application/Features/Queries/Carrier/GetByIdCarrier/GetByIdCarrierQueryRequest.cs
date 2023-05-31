@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier
 {
-    public class GetByIdCarrierConfigurationQueryRequest : IRequest<GetByIdCarrierQueryResponse>
+    public class GetByIdCarrierQueryRequest : IRequest<GetByIdCarrierQueryResponse>
     {
         public string Id { get; set; }
     }

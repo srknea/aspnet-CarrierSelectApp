@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier
 {
-    public class GetByIdCarrierConfigurationQueryHandler : IRequestHandler<GetByIdCarrierConfigurationQueryRequest, GetByIdCarrierConfigurationQueryResponse>
+    public class GetByIdCarrierQueryHandler : IRequestHandler<GetByIdCarrierQueryRequest, GetByIdCarrierQueryResponse>
     {
         readonly private ICarrierReadRepository _carrierReadRepository;
 
-        public GetByIdCarrierConfigurationQueryHandler(ICarrierReadRepository carrierReadRepository)
+        public GetByIdCarrierQueryHandler(ICarrierReadRepository carrierReadRepository)
         {
             _carrierReadRepository = carrierReadRepository;
         }
 
-        public async Task<GetByIdCarrierConfigurationQueryResponse> Handle(GetByIdCarrierConfigurationQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetByIdCarrierQueryResponse> Handle(GetByIdCarrierQueryRequest request, CancellationToken cancellationToken)
         {
             Domain.Entities.Carrier carrier = await _carrierReadRepository.GetByIdAsync(request.Id);
             return new()
