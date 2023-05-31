@@ -14,32 +14,32 @@ namespace ETicaretAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarrierConfigurationsController : ControllerBase
+    public class CarrierConfigurationController : ControllerBase
     {
         readonly private IMediator _mediator;
-        public CarrierConfigurationsController(IMediator mediator)
+        public CarrierConfigurationController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateCarrierConfigurationsCommandRequest createCarrierConfigurationCommandRequest)
+        public async Task<IActionResult> Post(CreateCarrierConfigurationCommandRequest createCarrierConfigurationCommandRequest)
         {
-            CreateCarrierConfigurationsCommandResponse response = await _mediator.Send(createCarrierConfigurationCommandRequest);
+            CreateCarrierConfigurationCommandResponse response = await _mediator.Send(createCarrierConfigurationCommandRequest);
             return StatusCode((int)HttpStatusCode.Created);
         }
 
         [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete([FromRoute] RemoveCarrierConfigurationsCommandRequest removeCarrierConfigurationsCommandRequest)
+        public async Task<IActionResult> Delete([FromRoute] RemoveCarrierConfigurationCommandRequest removeCarrierConfigurationsCommandRequest)
         {
-            RemoveCarrierConfigurationsCommandResponse response = await _mediator.Send(removeCarrierConfigurationsCommandRequest);
+            RemoveCarrierConfigurationCommandResponse response = await _mediator.Send(removeCarrierConfigurationsCommandRequest);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(UpdateCarrierConfigurationsCommandRequest updateCarrierConfigurationsCommandRequest)
+        public async Task<IActionResult> Put(UpdateCarrierConfigurationCommandRequest updateCarrierConfigurationsCommandRequest)
         {
-            UpdateCarrierConfigurationsCommandResponse response = await _mediator.Send(updateCarrierConfigurationsCommandRequest);
+            UpdateCarrierConfigurationCommandResponse response = await _mediator.Send(updateCarrierConfigurationsCommandRequest);
             return Ok();
         }
     }

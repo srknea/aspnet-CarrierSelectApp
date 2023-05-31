@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.UpdateCarrierConfigurations
 {
-    public class UpdateCarrierConfigurationsCommandHandler : IRequestHandler<UpdateCarrierConfigurationsCommandRequest, UpdateCarrierConfigurationsCommandResponse>
+    public class UpdateCarrierConfigurationCommandHandler : IRequestHandler<UpdateCarrierConfigurationCommandRequest, UpdateCarrierConfigurationCommandResponse>
     {
         readonly private ICarrierConfigurationReadRepository _carrierConfigurationReadRepository;
         readonly private ICarrierConfigurationWriteRepository _carrierConfigurationWriteRepository;
 
-        public UpdateCarrierConfigurationsCommandHandler(ICarrierConfigurationReadRepository carrierConfigurationReadRepository, ICarrierConfigurationWriteRepository carrierConfigurationWriteRepository)
+        public UpdateCarrierConfigurationCommandHandler(ICarrierConfigurationReadRepository carrierConfigurationReadRepository, ICarrierConfigurationWriteRepository carrierConfigurationWriteRepository)
         {
             _carrierConfigurationReadRepository = carrierConfigurationReadRepository;
             _carrierConfigurationWriteRepository = carrierConfigurationWriteRepository;
         }
 
-        public async Task<UpdateCarrierConfigurationsCommandResponse> Handle(UpdateCarrierConfigurationsCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateCarrierConfigurationCommandResponse> Handle(UpdateCarrierConfigurationCommandRequest request, CancellationToken cancellationToken)
         {
             Domain.Entities.CarrierConfiguration carrier = await _carrierConfigurationReadRepository.GetByIdAsync(Convert.ToString(request.Id));
             /*

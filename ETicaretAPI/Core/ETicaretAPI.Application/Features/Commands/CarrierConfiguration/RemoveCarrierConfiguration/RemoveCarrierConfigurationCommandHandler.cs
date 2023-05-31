@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.RemoveCarrierConfigurations
 {
-    public class RemoveCarrierConfigurationsCommandHandler : IRequestHandler<RemoveCarrierConfigurationsCommandRequest, RemoveCarrierConfigurationsCommandResponse>
+    public class RemoveCarrierConfigurationCommandHandler : IRequestHandler<RemoveCarrierConfigurationCommandRequest, RemoveCarrierConfigurationCommandResponse>
     {
         readonly private ICarrierConfigurationWriteRepository _carrierConfigurationWriteRepository;
 
-        public RemoveCarrierConfigurationsCommandHandler(ICarrierConfigurationWriteRepository carrierConfigurationWriteRepository)
+        public RemoveCarrierConfigurationCommandHandler(ICarrierConfigurationWriteRepository carrierConfigurationWriteRepository)
         {
             _carrierConfigurationWriteRepository = carrierConfigurationWriteRepository;
         }
 
-        public async Task<RemoveCarrierConfigurationsCommandResponse> Handle(RemoveCarrierConfigurationsCommandRequest request, CancellationToken cancellationToken)
+        public async Task<RemoveCarrierConfigurationCommandResponse> Handle(RemoveCarrierConfigurationCommandRequest request, CancellationToken cancellationToken)
         {
             await _carrierConfigurationWriteRepository.RemoveAsync(request.Id);
             await _carrierConfigurationWriteRepository.SaveAsync();

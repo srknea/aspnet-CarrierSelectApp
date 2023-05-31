@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.RemoveCarrierConfigurations
 {
-    public class RemoveCarrierConfigurationsCommandRequest : IRequest<RemoveCarrierConfigurationsCommandResponse>
+    public class RemoveCarrierConfigurationCommandRequest : IRequest<RemoveCarrierConfigurationCommandResponse>
     {
         public string Id { get; set; }
     }

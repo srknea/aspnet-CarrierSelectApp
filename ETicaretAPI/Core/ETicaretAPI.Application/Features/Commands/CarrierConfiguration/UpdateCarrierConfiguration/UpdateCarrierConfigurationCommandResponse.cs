@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.UpdateCarrierConfigurations
 {
-    public class UpdateCarrierConfigurationsCommandResponse
+    public class UpdateCarrierConfigurationCommandResponse
     {
     }
 }

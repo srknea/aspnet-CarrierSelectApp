@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.CreateCarrierConfigurations
 {
-    public class CreateCarrierConfigurationsCommandHandler : IRequestHandler<CreateCarrierConfigurationsCommandRequest, CreateCarrierConfigurationsCommandResponse>
+    public class CreateCarrierConfigurationCommandHandler : IRequestHandler<CreateCarrierConfigurationCommandRequest, CreateCarrierConfigurationCommandResponse>
     {
         readonly private ICarrierConfigurationWriteRepository _carrierConfigurationWriteRepository;
 
-        public CreateCarrierConfigurationsCommandHandler(ICarrierConfigurationWriteRepository carrierConfigurationWriteRepository)
+        public CreateCarrierConfigurationCommandHandler(ICarrierConfigurationWriteRepository carrierConfigurationWriteRepository)
         {
             _carrierConfigurationWriteRepository = carrierConfigurationWriteRepository;
         }
 
-        public async Task<CreateCarrierConfigurationsCommandResponse> Handle(CreateCarrierConfigurationsCommandRequest request, CancellationToken cancellationToken)
+        public async Task<CreateCarrierConfigurationCommandResponse> Handle(CreateCarrierConfigurationCommandRequest request, CancellationToken cancellationToken)
         {
             await _carrierConfigurationWriteRepository.AddAsync(new()
             {

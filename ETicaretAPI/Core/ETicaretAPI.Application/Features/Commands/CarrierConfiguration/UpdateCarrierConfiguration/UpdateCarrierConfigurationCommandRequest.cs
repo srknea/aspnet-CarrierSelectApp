@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.UpdateCarrierConfigurations
 {
-    public class UpdateCarrierConfigurationsCommandRequest : IRequest<UpdateCarrierConfigurationsCommandResponse>
+    public class UpdateCarrierConfigurationCommandRequest : IRequest<UpdateCarrierConfigurationCommandResponse>
     {
         public int Id { get; set; }
         public int CarrierMaxDesi { get; set; }
