@@ -1,9 +1,9 @@
 ﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.UpdateCarrier;
-using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.CreateCarrierConfigurations;
-using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.RemoveCarrierConfigurations;
-using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.UpdateCarrierConfigurations;
+using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.CreateCarrierConfiguration;
+using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.RemoveCarrierConfiguration;
+using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.UpdateCarrierConfiguration;
 using ETicaretAPI.Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;

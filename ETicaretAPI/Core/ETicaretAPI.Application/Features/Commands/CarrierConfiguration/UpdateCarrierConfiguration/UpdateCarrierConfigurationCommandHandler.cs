@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.UpdateCarrierConfigurations
+namespace ETicaretAPI.Application.Features.Commands.CarrierConfiguration.UpdateCarrierConfiguration
 {
     public class UpdateCarrierConfigurationCommandHandler : IRequestHandler<UpdateCarrierConfigurationCommandRequest, UpdateCarrierConfigurationCommandResponse>
     {

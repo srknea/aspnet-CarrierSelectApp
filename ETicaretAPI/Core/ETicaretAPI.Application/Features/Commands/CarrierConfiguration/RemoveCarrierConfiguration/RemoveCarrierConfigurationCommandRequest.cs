@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.RemoveCarrierConfigurations
+namespace ETicaretAPI.Application.Features.Commands.CarrierConfiguration.RemoveCarrierConfiguration
 {
     public class RemoveCarrierConfigurationCommandRequest : IRequest<RemoveCarrierConfigurationCommandResponse>
     {

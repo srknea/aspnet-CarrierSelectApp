@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Commands.CarrierConfigurations.CreateCarrierConfigurations
+namespace ETicaretAPI.Application.Features.Commands.CarrierConfiguration.CreateCarrierConfiguration
 {
     public class CreateCarrierConfigurationCommandRequest : IRequest<CreateCarrierConfigurationCommandResponse>
     {
