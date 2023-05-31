@@ -1,6 +1,7 @@
 ﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.UpdateCarrier;
+using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Persistance.Repositories;
 using MediatR;
@@ -39,6 +40,13 @@ namespace ETicaretAPI.API.Controllers
         {
             UpdateCarrierCommandResponse response = await _mediator.Send(updateCarrierCommandRequest);
             return Ok();
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Get([FromRoute] GetByIdCarrierConfigurationQueryRequest getByIdCarrierConfigurationQueryRequest)
+        {
+            GetByIdCarrierConfigurationQueryResponse response = await _mediator.Send(getByIdCarrierConfigurationQueryRequest);
+            return Ok(response);
         }
     }
 }

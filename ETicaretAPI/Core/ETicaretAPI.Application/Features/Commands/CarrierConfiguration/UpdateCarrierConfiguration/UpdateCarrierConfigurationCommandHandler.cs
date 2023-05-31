@@ -1,5 +1,4 @@
-﻿using ETicaretAPI.Application.Features.Commands.CarrierConfigurations.CreateCarrierConfigurations;
-using ETicaretAPI.Application.Repositories;
+﻿using ETicaretAPI.Application.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
