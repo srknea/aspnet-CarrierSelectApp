@@ -1,12 +1,14 @@
 ﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.UpdateCarrier;
+using ETicaretAPI.Application.Features.Queries.Carrier.GetAllCarrier;
 using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Persistance.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace ETicaretAPI.API.Controllers
@@ -48,6 +50,13 @@ namespace ETicaretAPI.API.Controllers
             GetByIdCarrierQueryResponse response = await _mediator.Send(getByIdCarrierQueryRequest);
             return Ok(response);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            GetAllCarrierQueryResponse response = await _mediator.Send(new GetAllCarrierQueryRequest());
+            return Ok(response);
+        }
     }
 }
 
@@ -85,5 +94,20 @@ public async Task<IActionResult> Delete(string Id)
     await _carrierWriteRepository.RemoveAsync(Id);
     await _carrierWriteRepository.SaveAsync();
     return Ok();
+}
+
+[HttpGet]
+public async Task<IActionResult> GetAllEntities()
+{
+    var entities = await _carrierReadRepository.GetAll()
+                        .Select(c => new
+                        {
+                            c.Id,
+                            c.CarrierName,
+                            c.CarrierIsActive,
+                            c.CarrierPlusDesiCost,
+                        })
+                        .ToListAsync();
+    return Ok(entities);
 }
 */
