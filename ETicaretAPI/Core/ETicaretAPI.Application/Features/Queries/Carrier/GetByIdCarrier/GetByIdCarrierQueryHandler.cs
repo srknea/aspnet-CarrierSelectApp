@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier
         public async Task<GetByIdCarrierQueryResponse> Handle(GetByIdCarrierQueryRequest request, CancellationToken cancellationToken)
         {
             Domain.Entities.Carrier carrier = await _carrierReadRepository.GetByIdAsync(request.Id);
+            if (carrier == null)
+            {
+                throw new Exception("Carrier not found");
+            }
             return new()
             {
                 CarrierName = carrier.CarrierName,

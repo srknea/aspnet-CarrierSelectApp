@@ -26,7 +26,7 @@ namespace ETicaretAPI.Application.Features.Queries.CarrierConfiguration.GetByIdC
             Domain.Entities.CarrierConfiguration carrierConfiguration = await _carrierConfigurationReadRepository.GetByIdAsync(request.Id);
             if (carrierConfiguration == null)
             {
-                throw new Exception("Carrier not found");
+                throw new Exception("CarrierConfiguration not found");
             }
             return new()
             {
