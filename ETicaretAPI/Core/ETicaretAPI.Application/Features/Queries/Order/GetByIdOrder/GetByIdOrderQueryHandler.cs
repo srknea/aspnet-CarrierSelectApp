@@ -24,7 +24,7 @@ namespace ETicaretAPI.Application.Features.Queries.Order.GetByIdOrder
             Domain.Entities.Order order = await _orderReadRepository.GetByIdAsync(request.Id);
             if (order == null)
             {
-                throw new Exception("Carrier not found");
+                throw new Exception("Order not found");
             }
             return new()
             {
