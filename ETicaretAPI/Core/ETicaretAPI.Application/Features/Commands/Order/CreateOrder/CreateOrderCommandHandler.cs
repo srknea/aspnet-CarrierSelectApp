@@ -27,36 +27,51 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
         public async Task<CreateOrderCommandResponse> Handle(CreateOrderCommandRequest request, CancellationToken cancellationToken)
         {
             int siparisDesi = request.OrderDesi;
-            decimal kargoUcreti = 0;
-
+            
             //Kargo firmalarının desi aralıklarını ve fiyatlarını içeren veri kaynağından bilgileri alma
             List<Domain.Entities.CarrierConfiguration> carrierConfigurations = await _carrierConfigurationReadRepository.GetAll().ToListAsync();
             List<Domain.Entities.Carrier> carriers = await _carrierReadRepository.GetAll().ToListAsync();
 
+            bool foundMatchingConfiguration = false;
+            decimal minKargoUcreti = decimal.MaxValue;
+            int selectedCarrierId = 0;
+
+            //Siparişin desi değerinin hangi kargo firmasının desi aralığına girdiğini bulma
             foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
             {
                 if (siparisDesi >= configuration.CarrierMinDesi && siparisDesi <= configuration.CarrierMaxDesi)
                 {
-                    // Siparişin kargo ücretini belirleme
-                    kargoUcreti = configuration.CarrierCost;
+                    foundMatchingConfiguration = true;
 
-                    await _orderWriteRepository.AddAsync(new()
+                    //Select the carrier with the lowest cost
+                    if (configuration.CarrierCost < minKargoUcreti)
                     {
-                        OrderDesi = request.OrderDesi,
-                        OrderDate = DateTime.Now,
-                        OrderCarrierCost = kargoUcreti,
-                        CarrierId = configuration.CarrierId
-                    });
-
-                    await _orderWriteRepository.SaveAsync();
-
-                    return new();
+                        minKargoUcreti = configuration.CarrierCost;
+                        selectedCarrierId = configuration.CarrierId;
+                    }
                 }
             }
-            
+
+            if (foundMatchingConfiguration)
+            {
+                await _orderWriteRepository.AddAsync(new()
+                {
+                    OrderDesi = request.OrderDesi,
+                    OrderDate = DateTime.Now,
+                    OrderCarrierCost = minKargoUcreti,
+                    CarrierId = selectedCarrierId
+                });
+
+                await _orderWriteRepository.SaveAsync();
+
+                return new();
+            }
+
+            decimal kargoUcreti = 0;
             int plusDesiCost = 0;
             int carrierId = 0;
 
+            // Siparişin desi değerinin hiçbir kargo firmasının desi aralığına girmemesi durumu
             foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
             {
                 decimal enYakinDesiFarki = decimal.MaxValue; // En yakın desi farkını takip etmek için bir başlangıç değeri atama
