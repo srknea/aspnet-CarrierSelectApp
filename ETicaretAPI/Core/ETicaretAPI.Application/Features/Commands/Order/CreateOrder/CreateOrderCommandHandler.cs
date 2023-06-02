@@ -59,9 +59,9 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
 
             foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
             {
-                decimal enYakinDesiFarki = decimal.MaxValue; // En yakın desi farkını takip etmek için bir başlangıç değeri atayın
+                decimal enYakinDesiFarki = decimal.MaxValue; // En yakın desi farkını takip etmek için bir başlangıç değeri atama
 
-                // Siparişin desi değeri ile kargo yapılandırmasının en yakın desi değeri arasındaki farkı hesaplayın
+                // Siparişin desi değeri ile kargo yapılandırmasının en yakın desi değeri arasındaki farkı hesaplama
                 decimal desiFarki = Math.Abs(siparisDesi - configuration.CarrierMaxDesi);
 
                 if (desiFarki < enYakinDesiFarki)
@@ -77,7 +77,7 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
                         }
                     }
 
-                    // Kargo ücretini hesaplayın
+                    // Kargo ücretini hesaplama
                     kargoUcreti = configuration.CarrierCost + (plusDesiCost * enYakinDesiFarki);
                 }
             }
