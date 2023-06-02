@@ -1,5 +1,5 @@
 ﻿using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.RemoveCarrierConfiguration;
-using ETicaretAPI.Application.Features.Commands.Order;
+using ETicaretAPI.Application.Features.Commands.Order.RemoveOrder;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
