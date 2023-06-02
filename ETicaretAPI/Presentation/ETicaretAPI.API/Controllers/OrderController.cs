@@ -3,7 +3,9 @@ using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.RemoveCarri
 using ETicaretAPI.Application.Features.Commands.Order.CreateOrder;
 using ETicaretAPI.Application.Features.Commands.Order.RemoveOrder;
 using ETicaretAPI.Application.Features.Queries.Carrier.GetAllCarrier;
+using ETicaretAPI.Application.Features.Queries.CarrierConfiguration.GetByIdCarrierConfiguration;
 using ETicaretAPI.Application.Features.Queries.Order.GetAllOrder;
+using ETicaretAPI.Application.Features.Queries.Order.GetByIdOrder;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,5 +45,11 @@ namespace ETicaretAPI.API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Get([FromRoute] GetByIdOrderQueryRequest getByIdOrderQueryRequest)
+        {
+            GetByIdOrderQueryResponse response = await _mediator.Send(getByIdOrderQueryRequest);
+            return Ok(response);
+        }
     }
 }
