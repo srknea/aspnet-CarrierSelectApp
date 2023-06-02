@@ -12,8 +12,5 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
     {
         public int OrderDesi { get; set; }
         public DateTime OrderDate { get; set; }
-        public decimal OrderCarrierCost { get; set; }
-
-        public int CarrierId { get; set; }
     }
 }
