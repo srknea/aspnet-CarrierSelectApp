@@ -20,10 +20,10 @@ e. The value obtained in step D is recorded in the database as the shipping cost
 
 To better understand the logical operations involved, you can refer to the following example:
 
-Order Weight: 13
-Carrier Min-Max Weight Range: 1-10
-Shipping Cost for the Relevant Weight Range: $32
-+1 Weight Cost: $4
+Order Weight: 13 <br/>
+Carrier Min-Max Weight Range: 1-10 <br/>
+Shipping Cost for the Relevant Weight Range: $32 <br/>
++1 Weight Cost: $4 <br/>
 Calculated Final Shipping Cost (to be recorded in the Order table): $32 + ($4 * (13-10) ) = $44
 
 Please note that the above explanation assumes a weight-based pricing model for the shipping costs.
