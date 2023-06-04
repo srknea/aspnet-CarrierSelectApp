@@ -36,18 +36,24 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
             decimal minKargoUcreti = decimal.MaxValue;
             int selectedCarrierId = 0;
 
-            //Siparişin desi değerinin hangi kargo firmasının desi aralığına girdiğini bulma
-            foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
+            foreach (Domain.Entities.Carrier carrier in carriers)
             {
-                if (siparisDesi >= configuration.CarrierMinDesi && siparisDesi <= configuration.CarrierMaxDesi)
+                if (carrier.CarrierIsActive)
                 {
-                    foundMatchingConfiguration = true;
-
-                    //Select the carrier with the lowest cost
-                    if (configuration.CarrierCost < minKargoUcreti)
+                    //Siparişin desi değerinin hangi kargo firmasının desi aralığına girdiğini bulma
+                    foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
                     {
-                        minKargoUcreti = configuration.CarrierCost;
-                        selectedCarrierId = configuration.CarrierId;
+                        if (siparisDesi >= configuration.CarrierMinDesi && siparisDesi <= configuration.CarrierMaxDesi)
+                        {
+                            foundMatchingConfiguration = true;
+
+                            //Select the carrier with the lowest cost
+                            if (configuration.CarrierCost < minKargoUcreti)
+                            {
+                                minKargoUcreti = configuration.CarrierCost;
+                                selectedCarrierId = configuration.CarrierId;
+                            }
+                        }
                     }
                 }
             }
@@ -85,7 +91,7 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
 
                     foreach (Domain.Entities.Carrier carrier in carriers)
                     {
-                        if (configuration.CarrierId == carrier.Id)
+                        if (configuration.CarrierId == carrier.Id && carrier.CarrierIsActive)
                         {
                             plusDesiCost = carrier.CarrierPlusDesiCost;
                             carrierId = carrier.Id;
