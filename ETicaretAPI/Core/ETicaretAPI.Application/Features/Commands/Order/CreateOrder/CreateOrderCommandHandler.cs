@@ -43,7 +43,7 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
                     //Siparişin desi değerinin hangi kargo firmasının desi aralığına girdiğini bulma
                     foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
                     {
-                        if (siparisDesi >= configuration.CarrierMinDesi && siparisDesi <= configuration.CarrierMaxDesi)
+                        if (configuration.CarrierId == carrier.Id && siparisDesi >= configuration.CarrierMinDesi && siparisDesi <= configuration.CarrierMaxDesi)
                         {
                             foundMatchingConfiguration = true;
 
@@ -77,11 +77,11 @@ namespace ETicaretAPI.Application.Features.Commands.Order.CreateOrder
             int plusDesiCost = 0;
             int carrierId = 0;
 
+            decimal enYakinDesiFarki = decimal.MaxValue; // En yakın desi farkını takip etmek için bir başlangıç değeri atama
+
             // Siparişin desi değerinin hiçbir kargo firmasının desi aralığına girmemesi durumu
             foreach (Domain.Entities.CarrierConfiguration configuration in carrierConfigurations)
             {
-                decimal enYakinDesiFarki = decimal.MaxValue; // En yakın desi farkını takip etmek için bir başlangıç değeri atama
-
                 // Siparişin desi değeri ile kargo yapılandırmasının en yakın desi değeri arasındaki farkı hesaplama
                 decimal desiFarki = Math.Abs(siparisDesi - configuration.CarrierMaxDesi);
 
