@@ -8,14 +8,14 @@ The calculated shipping cost and relevant data are then stored in the order tabl
 ### Orders
 The necessary parameters are filled in to add a record to the database.
 
-1. If the order's weight falls within the MinWeight-MaxWeight range of any carrier:
+1. If the order's weight falls within the MinWeight-MaxWeight range of any carrier: <br/>
 a. The price values of that carrier should be retrieved and recorded as the shipping cost for the order. The carrier with the lowest cost among the identified carriers should be selected.
 
-2. If the order's weight does not fall within the MinWeight-MaxWeight range of any carrier:
-a. The data of the carrier that has the weight closest to the order's weight, from the CarrierConfigurations table, is retrieved using appropriate queries.
-b. The price and +1 weight cost information of the retrieved record(s) are obtained.
-c. The difference between the order's weight and the closest weight value of the carrier obtained in step A is calculated.
-d. The difference value obtained in step C is multiplied by the +1 weight cost, and then added to the base shipping cost. This ensures the appropriate pricing for each additional weight unit exceeding the carrier's standard weight range.
+2. If the order's weight does not fall within the MinWeight-MaxWeight range of any carrier: <br/>
+a. The data of the carrier that has the weight closest to the order's weight, from the CarrierConfigurations table, is retrieved using appropriate queries. <br/>
+b. The price and +1 weight cost information of the retrieved record(s) are obtained. <br/>
+c. The difference between the order's weight and the closest weight value of the carrier obtained in step A is calculated. <br/>
+d. The difference value obtained in step C is multiplied by the +1 weight cost, and then added to the base shipping cost. This ensures the appropriate pricing for each additional weight unit exceeding the carrier's standard weight range. <br/>
 e. The value obtained in step D is recorded in the database as the shipping cost for the order.
 
 To better understand the logical operations involved, you can refer to the following example:
