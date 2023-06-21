@@ -28,6 +28,8 @@ Calculated Final Shipping Cost (to be recorded in the Order table): $32 + ($4 * 
 
 Please note that the above explanation assumes a weight-based pricing model for the shipping costs.
 
+### Tables
+
 **Product Table**
 
 | **Variable Name** | **Data Type** |
@@ -56,7 +58,7 @@ Please note that the above explanation assumes a weight-based pricing model for 
 | CarrierIsActive | bit |
 | CarrierPlusDesiCost | int |
 
-**CarrierConfigurations Table**
+**CarrierConfiguration Table**
 
 | **Variable Name** | **Data Type** |
 | --- | --- |
