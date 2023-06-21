@@ -27,3 +27,41 @@ Shipping Cost for the Relevant Weight Range: $32 <br/>
 Calculated Final Shipping Cost (to be recorded in the Order table): $32 + ($4 * (13-10) ) = $44
 
 Please note that the above explanation assumes a weight-based pricing model for the shipping costs.
+
+**Product Table**
+
+| **Variable Name** | **Data Type** |
+| --- | --- |
+| Id | int |
+| Name | nvarchar |
+| Price | decimal |
+| Stock | int |
+
+**Order Table**
+
+| **Variable Name** | **Data Type** |
+| --- | --- |
+| Id | int |
+| OrderDesi | int |
+| OrderDate | datetime |
+| OrderCarrierCost | decimal |
+| CarrierId | int |
+
+**Carrier Table**
+
+| **Variable Name** | **Data Type** |
+| --- | --- |
+| Id | int |
+| CarrierName | nvarchar |
+| CarrierIsActive | bit |
+| CarrierPlusDesiCost | int |
+
+**CarrierConfigurations Table**
+
+| **Variable Name** | **Data Type** |
+| --- | --- |
+| Id | int |
+| CarrierMaxDesi | int |
+| CarrierMaxDesi | int |
+| CarrierCost | decimal |
+| CarrierId | int |
