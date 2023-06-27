@@ -30,25 +30,6 @@ Please note that the above explanation assumes a weight-based pricing model for 
 
 ### Tables
 
-**Product Table**
-
-| **Variable Name** | **Data Type** |
-| --- | --- |
-| Id | int |
-| Name | nvarchar |
-| Price | decimal |
-| Stock | int |
-
-**Order Table**
-
-| **Variable Name** | **Data Type** |
-| --- | --- |
-| Id | int |
-| OrderDesi | int |
-| OrderDate | datetime |
-| OrderCarrierCost | decimal |
-| CarrierId | int |
-
 **Carrier Table**
 
 | **Variable Name** | **Data Type** |
@@ -66,4 +47,14 @@ Please note that the above explanation assumes a weight-based pricing model for 
 | CarrierMaxDesi | int |
 | CarrierMaxDesi | int |
 | CarrierCost | decimal |
+| CarrierId | int |
+
+**Order Table**
+
+| **Variable Name** | **Data Type** |
+| --- | --- |
+| Id | int |
+| OrderDesi | int |
+| OrderDate | datetime |
+| OrderCarrierCost | decimal |
 | CarrierId | int |
