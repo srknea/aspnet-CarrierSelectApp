@@ -1,3 +1,4 @@
+using ETicaretAPI.API.Middlewares;
 using ETicaretAPI.Application;
 using ETicaretAPI.Persistance;
 
@@ -22,6 +23,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthorization();
 

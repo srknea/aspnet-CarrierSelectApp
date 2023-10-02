@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Repositories;
+﻿using ETicaretAPI.Application.Exceptions;
+using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
 using MediatR;
 using System;
@@ -23,7 +24,7 @@ namespace ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier
             Domain.Entities.Carrier carrier = await _carrierReadRepository.GetByIdAsync(request.Id);
             if (carrier == null)
             {
-                throw new Exception("Carrier not found");
+                throw new NotFoundException($"Carrier with Id '{request.Id}' not found");
             }
             return new()
             {

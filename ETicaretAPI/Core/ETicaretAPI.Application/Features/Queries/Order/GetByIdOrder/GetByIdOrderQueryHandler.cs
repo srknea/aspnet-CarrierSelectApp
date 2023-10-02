@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
+﻿using ETicaretAPI.Application.Exceptions;
+using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
 using MediatR;
@@ -24,7 +25,7 @@ namespace ETicaretAPI.Application.Features.Queries.Order.GetByIdOrder
             Domain.Entities.Order order = await _orderReadRepository.GetByIdAsync(request.Id);
             if (order == null)
             {
-                throw new Exception("Order not found");
+                throw new NotFoundException($"Order with Id '{request.Id}' not found");
             }
             return new()
             {

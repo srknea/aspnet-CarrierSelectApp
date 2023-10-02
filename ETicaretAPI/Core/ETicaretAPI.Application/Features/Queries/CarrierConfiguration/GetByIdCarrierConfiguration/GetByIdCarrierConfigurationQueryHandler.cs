@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.CreateCarrierConfiguration;
+﻿using ETicaretAPI.Application.Exceptions;
+using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.CreateCarrierConfiguration;
 using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
@@ -26,7 +27,7 @@ namespace ETicaretAPI.Application.Features.Queries.CarrierConfiguration.GetByIdC
             Domain.Entities.CarrierConfiguration carrierConfiguration = await _carrierConfigurationReadRepository.GetByIdAsync(request.Id);
             if (carrierConfiguration == null)
             {
-                throw new Exception("CarrierConfiguration not found");
+                throw new NotFoundException($"CarrierConfiguration with Id '{request.Id}' not found");
             }
             return new()
             {
