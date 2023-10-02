@@ -1,9 +1,8 @@
-﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
+﻿using ETicaretAPI.Application.DTOs;
+using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.RemoveCarrierConfiguration;
 using ETicaretAPI.Application.Features.Commands.Order.CreateOrder;
 using ETicaretAPI.Application.Features.Commands.Order.RemoveOrder;
-using ETicaretAPI.Application.Features.Queries.Carrier.GetAllCarrier;
-using ETicaretAPI.Application.Features.Queries.CarrierConfiguration.GetByIdCarrierConfiguration;
 using ETicaretAPI.Application.Features.Queries.Order.GetAllOrder;
 using ETicaretAPI.Application.Features.Queries.Order.GetByIdOrder;
 using MediatR;
@@ -13,9 +12,9 @@ using System.Net;
 
 namespace ETicaretAPI.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrderController : CustomBaseController
     {
         readonly private IMediator _mediator;
 
@@ -27,29 +26,32 @@ namespace ETicaretAPI.API.Controllers
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete([FromRoute] RemoveOrderCommandRequest removeOrderCommandRequest)
         {
-            RemoveOrderCommandResponse response = await _mediator.Send(removeOrderCommandRequest);
-            return Ok();
+            await _mediator.Send(removeOrderCommandRequest);
+
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateOrderCommandRequest createOrderCommandRequest)
+        public async Task<IActionResult> Create(CreateOrderCommandRequest createOrderCommandRequest)
         {
             CreateOrderCommandResponse response = await _mediator.Send(createOrderCommandRequest);
             return StatusCode((int)HttpStatusCode.Created);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             GetAllOrderQueryResponse response = await _mediator.Send(new GetAllOrderQueryRequest());
-            return Ok(response);
+
+            return CreateActionResult(CustomResponseDto<GetAllOrderQueryResponse>.Success(200, response));
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> Get([FromRoute] GetByIdOrderQueryRequest getByIdOrderQueryRequest)
         {
             GetByIdOrderQueryResponse response = await _mediator.Send(getByIdOrderQueryRequest);
-            return Ok(response);
+
+            return CreateActionResult(CustomResponseDto<GetByIdOrderQueryResponse>.Success(200, response));
         }
     }
 }

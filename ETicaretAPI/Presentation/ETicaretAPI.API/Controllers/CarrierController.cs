@@ -1,21 +1,19 @@
-﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
+﻿using ETicaretAPI.Application.DTOs;
+using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
 using ETicaretAPI.Application.Features.Commands.Carrier.UpdateCarrier;
 using ETicaretAPI.Application.Features.Queries.Carrier.GetAllCarrier;
 using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
-using ETicaretAPI.Application.Repositories;
-using ETicaretAPI.Persistance.Repositories;
+using ETicaretAPI.Application.Features.Queries.Order.GetByIdOrder;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace ETicaretAPI.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CarrierController : ControllerBase
+    public class CarrierController : CustomBaseController
     {
         readonly private IMediator _mediator;
         public CarrierController(IMediator mediator)
@@ -33,29 +31,34 @@ namespace ETicaretAPI.API.Controllers
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete([FromRoute] RemoveCarrierCommandRequest removeCarrierCommandRequest)
         {
-            RemoveCarrierCommandResponse response = await _mediator.Send(removeCarrierCommandRequest);
-            return Ok();
+            await _mediator.Send(removeCarrierCommandRequest);
+            
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+            // 204 : İşlem sonucunda bir data dönmediğimiz, sadece durumun başarılı olduğunu client'a söylemek istediğimiz senaryolarda kullanırız.
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(UpdateCarrierCommandRequest updateCarrierCommandRequest)
+        public async Task<IActionResult> Update(UpdateCarrierCommandRequest updateCarrierCommandRequest)
         {
             UpdateCarrierCommandResponse response = await _mediator.Send(updateCarrierCommandRequest);
-            return Ok();
+
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> Get([FromRoute] GetByIdCarrierQueryRequest getByIdCarrierQueryRequest)
         {
             GetByIdCarrierQueryResponse response = await _mediator.Send(getByIdCarrierQueryRequest);
-            return Ok(response);
+
+            return CreateActionResult(CustomResponseDto<GetByIdCarrierQueryResponse>.Success(200, response));
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             GetAllCarrierQueryResponse response = await _mediator.Send(new GetAllCarrierQueryRequest());
-            return Ok(response);
+            
+            return CreateActionResult(CustomResponseDto<GetAllCarrierQueryResponse>.Success(200, response));
         }
     }
 }

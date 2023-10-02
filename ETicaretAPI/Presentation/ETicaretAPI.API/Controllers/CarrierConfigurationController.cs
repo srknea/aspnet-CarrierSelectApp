@@ -1,24 +1,19 @@
-﻿using ETicaretAPI.Application.Features.Commands.Carrier.CreateCarrier;
-using ETicaretAPI.Application.Features.Commands.Carrier.RemoveCarrier;
-using ETicaretAPI.Application.Features.Commands.Carrier.UpdateCarrier;
+﻿using ETicaretAPI.Application.DTOs;
 using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.CreateCarrierConfiguration;
 using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.RemoveCarrierConfiguration;
 using ETicaretAPI.Application.Features.Commands.CarrierConfiguration.UpdateCarrierConfiguration;
-using ETicaretAPI.Application.Features.Queries.Carrier.GetAllCarrier;
 using ETicaretAPI.Application.Features.Queries.Carrier.GetByIdCarrier;
 using ETicaretAPI.Application.Features.Queries.CarrierConfiguration.GetAllCarrierConfiguration;
 using ETicaretAPI.Application.Features.Queries.CarrierConfiguration.GetByIdCarrierConfiguration;
-using ETicaretAPI.Application.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace ETicaretAPI.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CarrierConfigurationController : ControllerBase
+    public class CarrierConfigurationController : CustomBaseController
     {
         readonly private IMediator _mediator;
         public CarrierConfigurationController(IMediator mediator)
@@ -36,29 +31,33 @@ namespace ETicaretAPI.API.Controllers
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete([FromRoute] RemoveCarrierConfigurationCommandRequest removeCarrierConfigurationsCommandRequest)
         {
-            RemoveCarrierConfigurationCommandResponse response = await _mediator.Send(removeCarrierConfigurationsCommandRequest);
-            return Ok();
+            await _mediator.Send(removeCarrierConfigurationsCommandRequest);
+
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(UpdateCarrierConfigurationCommandRequest updateCarrierConfigurationsCommandRequest)
+        public async Task<IActionResult> Update(UpdateCarrierConfigurationCommandRequest updateCarrierConfigurationsCommandRequest)
         {
             UpdateCarrierConfigurationCommandResponse response = await _mediator.Send(updateCarrierConfigurationsCommandRequest);
-            return Ok();
+
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> Get([FromRoute] GetByIdCarrierConfigurationQueryRequest getByIdCarrierConfigurationQueryRequest)
         {
             GetByIdCarrierConfigurationQueryResponse response = await _mediator.Send(getByIdCarrierConfigurationQueryRequest);
-            return Ok(response);
+
+            return CreateActionResult(CustomResponseDto<GetByIdCarrierConfigurationQueryResponse>.Success(200, response));
         }
         
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             GetAllCarrierConfigurationQueryResponse response = await _mediator.Send(new GetAllCarrierConfigurationQueryRequest());
-            return Ok(response);
+
+            return CreateActionResult(CustomResponseDto<GetAllCarrierConfigurationQueryResponse>.Success(200, response));
         }
     }
 }
